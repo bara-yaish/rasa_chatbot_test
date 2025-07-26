@@ -6,3 +6,13 @@ services:
     volumes:
      - .:/app
     command: run --enable-api --cors "*" --port 5005
+    depends_on:
+      - rasa-actions
+
+  rasa-actions:
+    build: .
+    ports:
+      - "5055:5055"
+    volumes:
+      - .:/app
+    command: run actions --port 5055
